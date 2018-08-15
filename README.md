@@ -7,7 +7,7 @@ In spiking neural networks, such as those present in biology and
 and some neuromorphic hardware, communication between neurons takes
 place by means of spikes.
 
-Here I've focused on a simple implementation of a leaky integrate
+Here I have focused on a simple implementation of a leaky integrate
 and fire (LIF) neuron with the following characteristics:
 
 - Neurons spike whenever their potential reaches a certain threshold
@@ -40,9 +40,7 @@ that is as close to the math as possible.
 In my laptop, the Julia 1.0 test case takes around 5s
 to run. The equivalent Python version (Python 3.7) takes around 3m30s. That's
 faster than the first Python implementation that incorporated some additional
-bookkeeping on the Python side, but Julia is still 20 times faster.
-
-Here is a short description of the Julia and Python implementations:
+bookkeeping on the Python side, but Julia is still 40 times faster.
 
 ## Julia implementation
 
@@ -72,7 +70,7 @@ end
 const SpikeTrain = Vector{Spike}
 ```
 
-And the neural network and a helper alias to codify the fan-out of
+The neural network and a helper alias to codify the fan-out of
 each neuron:
 
 ```julia
@@ -89,9 +87,11 @@ end
 In this simple implementation I haven't bothered to codify the synaptic
 weights as a sparse matrix, and I am considering a single propagation delay.
 Both generalizations are trivial. Also, bear in mind that
-there is no matrix multiplication involved.
+there is no matrix multiplication involved, the matrix is used just
+to store the synaptic weights.
 
-We complete this with a mutable struct that codifies the relevant data
+We complete our minimal implementation
+ with a mutable struct that codifies the relevant data
 required to run a simulation:
 
 ```julia
